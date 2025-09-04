@@ -1,6 +1,9 @@
 [build]
-builder = "paketobuildpacks/builder:base"
-buildCommand = "cd backend && ./mvnw clean package -DskipTests"
+builder = "Maven"
+
+[env]
+PORT = "5000"
 
 [deploy]
-startCommand = "cd backend && java -jar target/*.jar"
+startCommand = "./mvnw spring-boot:run"
+rootDirectory = "backend"
