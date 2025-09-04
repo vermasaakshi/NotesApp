@@ -1,0 +1,215 @@
+/* NoteEditor.css - Note Editor Component Styles */
+.note-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* No Note Selected State */
+  .no-note-selected {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+  }
+  
+  .no-note-content {
+    text-align: center;
+    color: #666;
+    max-width: 300px;
+  }
+  
+  .no-note-icon {
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+  
+  .no-note-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .no-note-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Editor Header */
+  .editor-header {
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    flex-shrink: 0;
+  }
+  
+  .editor-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .note-date {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .save-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .save-indicator span {
+    font-size: 12px;
+    color: #ff9500;
+    font-weight: 500;
+  }
+  
+  .editor-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .share-button {
+    background-color: #f0f0f0;
+    color: #007aff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .share-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .save-button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Title Section */
+  .title-section {
+    padding: 0 20px;
+    flex-shrink: 0;
+  }
+  
+  .title-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d1d1f;
+    background: transparent;
+    padding: 20px 0 16px 0;
+    font-family: inherit;
+    resize: none;
+  }
+  
+  .title-input::placeholder {
+    color: #ccc;
+  }
+  
+  /* Content Section */
+  .content-section {
+    flex: 1;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .content-textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1d1d1f;
+    background: transparent;
+    font-family: inherit;
+    resize: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+  }
+  
+  .content-textarea::placeholder {
+    color: #ccc;
+  }
+  
+  /* Editor Footer */
+  .editor-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #e5e5e5;
+    background-color: #fafafa;
+    flex-shrink: 0;
+  }
+  
+  .word-count {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .note-editor {
+      height: 60vh;
+    }
+    
+    .editor-header {
+      padding: 16px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .editor-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+    
+    .title-input {
+      font-size: 20px;
+      padding: 16px 0 12px 0;
+    }
+    
+    .content-section {
+      padding: 0 20px 16px 20px;
+    }
+    
+    .content-textarea {
+      font-size: 16px;
+      min-height: 200px;
+    }
+  }

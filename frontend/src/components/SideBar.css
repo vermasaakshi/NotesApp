@@ -1,0 +1,251 @@
+/* Sidebar.css - Sidebar Component Styles */
+/* Sidebar.css - Sidebar Component Styles */
+.sidebar {
+    width: 320px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Sidebar Header */
+  .sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+  }
+  
+  .sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .sidebar-title h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin: 0;
+  }
+  
+  .notes-count {
+    background-color: #f0f0f0;
+    color: #666;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .create-note-button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .create-note-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Loading State */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #666;
+  }
+  
+  .loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e5e5e5;
+    border-top: 2px solid #007aff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Empty State */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+  }
+  
+  .empty-state p {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+  
+  .create-first-note {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .create-first-note:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Notes List */
+  .notes-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+  }
+  
+  /* Individual Note Item */
+  .note-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+    position: relative;
+  }
+  
+  .note-item:hover {
+    background-color: #f8f8f8;
+  }
+  
+  .note-item.selected {
+    background-color: #007aff;
+    color: white;
+  }
+  
+  .note-item.selected .note-title {
+    color: white;
+  }
+  
+  .note-item.selected .note-date,
+  .note-item.selected .note-preview {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .note-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .note-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .note-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin: 0;
+    line-height: 1.3;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .delete-button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  
+  .note-item:hover .delete-button {
+    opacity: 1;
+  }
+  
+  .delete-button:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #d32f2f;
+  }
+  
+  .note-item.selected .delete-button {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .note-item.selected .delete-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .note-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .note-date {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .note-preview {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: 40vh;
+      border-right: none;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .sidebar-header {
+      padding: 16px 20px;
+    }
+    
+    .sidebar-title h2 {
+      font-size: 20px;
+    }
+    
+    .note-item {
+      padding: 12px 20px;
+    }
+  }
