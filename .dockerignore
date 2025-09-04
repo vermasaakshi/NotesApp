@@ -1,0 +1,8 @@
+.git
+.gitignore
+README.md
+frontend/
+backend/target/
+backend/.gitignore
+*.log
+.DS_Store
