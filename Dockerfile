@@ -1,39 +1,32 @@
-# =========================
-# Stage 1: Build the Spring Boot JAR using Maven
-# =========================
-FROM maven:3.9.3-eclipse-temurin-21 AS build
-
-# Set working directory
+# Stage 1: Build backend JAR
+FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# Copy Maven wrapper and config from backend folder
+# Copy Maven wrapper and config from backend
 COPY backend/mvnw .
 COPY backend/.mvn .mvn
 
-# Copy pom.xml first (for dependency caching)
+# Copy pom.xml first for caching
 COPY backend/pom.xml .
 
-# Download dependencies
+# Download dependencies offline
 RUN ./mvnw dependency:go-offline
 
 # Copy backend source code
 COPY backend/src ./src
 
-# Build the Spring Boot JAR (skip tests for faster build)
+# Build Spring Boot JAR (skip tests)
 RUN ./mvnw clean package -DskipTests
 
-# =========================
-# Stage 2: Run the JAR with Java 21
-# =========================
+# Stage 2: Run JAR
 FROM eclipse-temurin:21-jdk
-
 WORKDIR /app
 
-# Copy the built JAR from the previous stage
+# Copy built JAR from build stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Expose the port (Render provides PORT environment variable)
+# Expose port (Render will use PORT env variable)
 EXPOSE 5000
 
-# Start the Spring Boot application
+# Start backend
 ENTRYPOINT ["java", "-jar", "app.jar"]
