@@ -5,5 +5,5 @@ builder = "Maven"
 PORT = "5000"
 
 [deploy]
-startCommand = "./mvnw spring-boot:run"
 rootDirectory = "backend"
+startCommand = "./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=$PORT"
