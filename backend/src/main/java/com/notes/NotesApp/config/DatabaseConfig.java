@@ -2,6 +2,8 @@
 package com.notes.NotesApp.config;
 
 
+import java.net.URI;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -20,9 +22,26 @@ public class DatabaseConfig {
         String dbUrl = env.getProperty("DATABASE_URL");
         
         if (dbUrl != null && dbUrl.startsWith("postgresql://")) {
-            // Convert Render format to JDBC format
-            String jdbcUrl = "jdbc:" + dbUrl;
-            dataSource.setJdbcUrl(jdbcUrl);
+            try {
+                // Parse the Render database URL
+                URI dbUri = new URI(dbUrl.replace("postgresql://", "http://"));
+                
+                String username = dbUri.getUserInfo().split(":")[0];
+                String password = dbUri.getUserInfo().split(":")[1];
+                String host = dbUri.getHost();
+                int port = dbUri.getPort();
+                String database = dbUri.getPath().substring(1);
+                
+                // Build proper JDBC URL
+                String jdbcUrl = String.format("jdbc:postgresql://%s:%d/%s", host, port, database);
+                
+                dataSource.setJdbcUrl(jdbcUrl);
+                dataSource.setUsername(username);
+                dataSource.setPassword(password);
+                
+            } catch (Exception e) {
+                throw new RuntimeException("Error parsing DATABASE_URL", e);
+            }
         } else {
             // Fallback for local development
             dataSource.setJdbcUrl(env.getProperty("spring.datasource.url", 
@@ -36,6 +55,7 @@ public class DatabaseConfig {
         dataSource.setConnectionTimeout(20000);
         dataSource.setIdleTimeout(300000);
         dataSource.setMaxLifetime(1800000);
+        dataSource.setDataSourceClassName("org.postgresql.ds.PGSimpleDataSource");
         
         return dataSource;
     }
